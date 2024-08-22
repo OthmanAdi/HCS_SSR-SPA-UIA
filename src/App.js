@@ -1,24 +1,36 @@
-import logo from './logo.svg';
 import './App.css';
+import React, {useState} from 'react';
 
 function App() {
+
+  const [todos, setTodos] = useState([]);
+  const [input, setInput] = useState('');
+
+  const addTodo = () => {
+    if(input) {
+      setTodos([...todos, input]); //the triple dots are knows as a "Spread Operator"
+      setInput(''); //resetting the input field
+    }
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <h1>SPA Todo List</h1>
+
+    <input
+    value={input}
+    onChange={(e) => setInput(e.target.value)}
+    placeholder='Enter a Todo'
+    ></input>
+
+    <button onClick={addTodo}>Add Todo</button>
+
+    <ul>
+      {todos.map((newTodoItem, Index)=> (
+        <li key={Index}>{newTodoItem}</li> //Key is given to assist with react todos sorting
+      ))}
+    </ul>
+    </>
   );
 }
 
