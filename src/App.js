@@ -1,22 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState, useEffect} from "react";
 
-function App() {
+const App = ({data}) => {
+  const [weather, setWeather] = useState(data);
+
+  useEffect(()=>{
+    const timer = setInterval(()=>{
+      setWeather({
+        tempreture: Math.floor(Math.random() * 30) + 10,
+        condition: ['Sunny', 'Cloudy', 'Rainy'][Math.floor(Math.random() * 3)]
+      })
+    },5000);
+    return() => clearInterval(timer);
+  },[]);
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>Universal Weather App</h1>
+        <p>Tempreture: {weather.tempreture}°C</p>
+        <p>Condition: {weather.condition}</p>
       </header>
     </div>
   );
