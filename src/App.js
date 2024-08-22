@@ -1,24 +1,22 @@
-import logo from './logo.svg';
 import './App.css';
+import React from 'react';
+
+const blogPosts = [
+  {id: 0, title: "Introduction to SSR", content:"Server-Side rendering is..."},
+  {id: 1, title: "Benefits of SSR", content:"SSR Provides better inital load times..."}
+]
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+     <h1>SSR Blogs</h1>
+     {blogPosts.map((posts)=>(
+      <div key={posts.id}>
+        <h2>{posts.title}</h2>
+        <p>{posts.content}</p>
+      </div>
+     ))}
+    </>
   );
 }
 
