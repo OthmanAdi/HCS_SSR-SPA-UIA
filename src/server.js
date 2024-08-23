@@ -3,10 +3,11 @@ import path from 'path';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import App from './App';
+import './globals.css';
 
 const app = express();
 
-app.use(express.static(path.join(__dirname, '../build')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('*',(req, res)=>{
     const initialData = {tempreture: 25, condition: 'Sunny'};
@@ -16,6 +17,7 @@ app.get('*',(req, res)=>{
     <!DOCTYPE html>
     <html lang="en">
     <head>
+        <link rel="stylesheet" href="/styles.css">
         <meta charset="utf-8" />
         <link rel="icon" href="/favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
